@@ -25,9 +25,11 @@ namespace Haaya.GuardClient
         private ConcurrentQueue<Bitmap> _imgQueue = new ConcurrentQueue<Bitmap>();
         private Thread _sendThread;
         private TcpClient _tcpClient;
+        private TcpClient _heartTdpClient;
         private string _targetIp;
         private int _port;
         private MemoryStream _ms;
+        private System.Threading.Timer _heartTimer;
          private ServiceImp()
         {
             _imgCount = 0;
@@ -35,8 +37,27 @@ namespace Haaya.GuardClient
             _imgQueue = new ConcurrentQueue<Bitmap>();
             _sendThread = new Thread(ServiceImp.SendVedio);
             _tcpClient = new TcpClient();
-            _ms = new MemoryStream();
+            _ms = new MemoryStream();           
+            _heartTdpClient = new TcpClient();
         }
+         public void Clear()
+         {
+             _heartTdpClient.Close();             
+             _sendThread.Abort();
+         }
+         private static void Heart(object state)
+         {             
+                 NetworkStream stream = ServiceImp.Instance._heartTdpClient.GetStream();
+                 byte[] ok = { 1, 0, 1 };
+                 stream.Write(ok, 0, ok.Length);
+         }
+         
+         public void Init()
+         {
+             _sendThread.IsBackground = true;
+             _heartTdpClient.Connect(DefineTable.ServerHost, DefineTable.ServerPort);
+             _heartTimer = new Timer(ServiceImp.Heart, null, 0, 60 * 1000);
+         }
         public void WriteImage(Bitmap image)
         {
             _imgCount++;
@@ -54,6 +75,11 @@ namespace Haaya.GuardClient
             _isSendVedio = true;
             _sendThread.Start();
         }
+        public void Stop()
+        {
+            _isSendVedio = false;
+          
+        }
         private static void SendVedio()
         {
             ServiceImp._instance._tcpClient.Connect(ServiceImp._instance._targetIp, ServiceImp._instance._port);
@@ -68,6 +94,7 @@ namespace Haaya.GuardClient
                 stream.Write(datas, 0, datas.Length);
             }
             ServiceImp._instance._tcpClient.Close();
+            
         }
     }
 }
