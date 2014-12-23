@@ -47,16 +47,21 @@ namespace Haaya.GuardClient
          {
              try
              {
+                 win.Log("连接远程服务器");
                  IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(DefineTable.ServerHost), DefineTable.ServerPort);
                  _heartSocket.Connect(ipe);
              }
              catch (Exception ex)
              {
+                 win.Log("连接远程服务器失败");
                  return;
              }
+             win.Log("连接远程服务器成功，开始身份验证");
              Safe.Security(_heartSocket);
              _heartThread.IsBackground = true;
+             win.Log("启动心跳线程");
              _heartThread.Start();
+             win.Log("启动心跳计时器");
              _heartTimer = new Timer(ServiceImp.Heart, null, 10 * 1000, 60 * 1000);
          }
         
