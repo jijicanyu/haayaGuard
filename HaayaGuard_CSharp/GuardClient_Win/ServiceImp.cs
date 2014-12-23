@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardClient_Win;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,12 +27,11 @@ namespace Haaya.GuardClient
         private ConcurrentQueue<Bitmap> _imgQueue = new ConcurrentQueue<Bitmap>();
         private Thread _heartThread;
         Socket _heartSocket;
-        private string _targetIp;
-        private int _port;
         private MemoryStream _ms;
         private System.Threading.Timer _heartTimer;
         private byte[] _heartData = { 1, 0, 1 };
         private byte[] _cmdData;
+        public static Form1 win;
          private ServiceImp()
         {
             _cmdData = new byte[512];
@@ -64,6 +64,7 @@ namespace Haaya.GuardClient
          {
              if (ServiceImp._instance._heartSocket.Available < 1)
              ServiceImp._instance._heartSocket.Send(ServiceImp._instance._heartData);
+             win.Log("心跳");
          }
          private static void HeartListen()
          {
@@ -72,9 +73,11 @@ namespace Haaya.GuardClient
              {
                  if (ServiceImp._instance._heartSocket.Available < 1)
                  {
+                     win.Log("等待服务器指令");
                      Thread.Sleep(1000);
                      continue;
                  }
+                 win.Log("收到服务器指令");
                  //接受指令
                  ServiceImp._instance._heartSocket.Receive(ServiceImp._instance._cmdData);
                  string cmd = System.Text.Encoding.ASCII.GetString(ServiceImp._instance._cmdData);
@@ -93,10 +96,12 @@ namespace Haaya.GuardClient
              Bitmap data = null;
              while (ServiceImp._instance._isSendVedio)
              {
+                 win.Log("发送图片");
                  ServiceImp._instance._imgQueue.TryDequeue(out data);
                  data.Save(ServiceImp._instance._ms, ImageFormat.Jpeg);
                  ServiceImp._instance._heartSocket.Send(ServiceImp._instance._ms.ToArray());
                  ServiceImp._instance._ms.Close();
+                 win.Log("发送图片完毕");
              }
          }
         public void WriteImage(Bitmap image)

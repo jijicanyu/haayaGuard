@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haaya.GuardClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,7 +16,9 @@ namespace GuardClient_Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var form1 = new Form1();
+            ServiceImp.win = form1;
+            Application.Run(form1);
         }
     }
 }

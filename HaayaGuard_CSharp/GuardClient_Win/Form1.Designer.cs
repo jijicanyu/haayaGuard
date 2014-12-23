@@ -39,6 +39,7 @@
             this.videPlayer = new AForge.Controls.VideoSourcePlayer();
             this.label1 = new System.Windows.Forms.Label();
             this.secretKey = new System.Windows.Forms.TextBox();
+            this.richState = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +68,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(381, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(489, 25);
             this.toolStrip1.TabIndex = 13;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -120,16 +121,25 @@
             // 
             // secretKey
             // 
-            this.secretKey.Location = new System.Drawing.Point(297, 82);
+            this.secretKey.Location = new System.Drawing.Point(372, 49);
             this.secretKey.Name = "secretKey";
             this.secretKey.Size = new System.Drawing.Size(72, 21);
             this.secretKey.TabIndex = 15;
+            // 
+            // richState
+            // 
+            this.richState.Location = new System.Drawing.Point(318, 82);
+            this.richState.Name = "richState";
+            this.richState.Size = new System.Drawing.Size(159, 207);
+            this.richState.TabIndex = 16;
+            this.richState.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 302);
+            this.ClientSize = new System.Drawing.Size(489, 301);
+            this.Controls.Add(this.richState);
             this.Controls.Add(this.secretKey);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.videoSourcePlayer1);
@@ -158,6 +168,7 @@
         private AForge.Controls.VideoSourcePlayer videPlayer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox secretKey;
+        private System.Windows.Forms.RichTextBox richState;
     }
 }
 

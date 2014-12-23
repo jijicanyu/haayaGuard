@@ -19,6 +19,10 @@ namespace GuardClient_Win
             InitializeComponent();
             
         }
+        public void Log(string content)
+        {
+            richState.AppendText(content + "\n");
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             try
