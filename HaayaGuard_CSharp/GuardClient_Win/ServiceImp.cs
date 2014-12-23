@@ -48,8 +48,15 @@ namespace Haaya.GuardClient
         }
          public void Init()
          {
-             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(DefineTable.ServerHost), DefineTable.ServerPort);
-             _heartSocket.Connect(ipe);
+             try
+             {
+                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(DefineTable.ServerHost), DefineTable.ServerPort);
+                 _heartSocket.Connect(ipe);
+             }
+             catch (Exception ex)
+             {
+                 return;
+             }
              Safe.Security(_heartSocket);
              _sendThread.IsBackground = true;
              _heartThread.IsBackground = true;

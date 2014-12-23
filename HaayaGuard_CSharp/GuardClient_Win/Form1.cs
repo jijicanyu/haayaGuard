@@ -17,7 +17,7 @@ namespace GuardClient_Win
         public Form1()
         {
             InitializeComponent();
-            ServiceImp.Instance.Init();
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -49,6 +49,7 @@ namespace GuardClient_Win
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Safe.key = secretKey.Text;
+            ServiceImp.Instance.Init();
             CameraConn();
         }
 
