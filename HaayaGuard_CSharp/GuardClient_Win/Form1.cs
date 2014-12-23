@@ -62,6 +62,7 @@ namespace GuardClient_Win
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            ServiceImp.Instance.Stop();
             videPlayer.SignalToStop();
             videPlayer.WaitForStop();
         }
@@ -69,6 +70,7 @@ namespace GuardClient_Win
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             toolStripButton2_Click(null, null);
+            ServiceImp.Instance.Clear();
         }
     }
 }
