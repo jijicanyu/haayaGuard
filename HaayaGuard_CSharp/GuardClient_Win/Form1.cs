@@ -43,7 +43,8 @@ namespace GuardClient_Win
             }
         }
         private void videoSourcePlayer_NewFrame(object sender, ref Bitmap image)
-        { 
+        {
+            ServiceImp.Instance.WriteImage(image);
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {

@@ -77,7 +77,7 @@ namespace Haaya.GuardClient
                  if (!string.IsNullOrEmpty(cmd))
                  {
                      string[] cmdDatas = cmd.Split(',');
-                     if (cmdDatas[0] == "cn")
+                     if (cmdDatas[0] == CmdTable.SendImage)
                      {
                          string targetIp = cmdDatas[1];
                          int port = int.Parse(cmdDatas[2]);
@@ -117,10 +117,10 @@ namespace Haaya.GuardClient
                 }
                 _dataSocket.Receive(cmds);
                 strCmd=System.Text.Encoding.ASCII.GetString(cmds);
-                if (strCmd == "co")
+                if (strCmd ==CmdTable.OtherClientConnected)
                     isConnect = true;
             }
-            _dataSocket.Send(System.Text.Encoding.ASCII.GetBytes("c"));
+            _dataSocket.Send(System.Text.Encoding.ASCII.GetBytes(CmdTable.OpenHole));
             //打洞
             IPEndPoint otherDataIpe = new IPEndPoint(IPAddress.Parse(targetIp), port);
             try
