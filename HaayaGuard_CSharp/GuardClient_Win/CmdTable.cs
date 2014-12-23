@@ -10,6 +10,8 @@ namespace Haaya.GuardClient
        public static readonly string SendImage = "cn";
        public static readonly string OtherClientConnected = "co";
        public static readonly string OpenHole = "c";
-     
+       public static readonly string Passed = "p";
+
+      
     }
 }

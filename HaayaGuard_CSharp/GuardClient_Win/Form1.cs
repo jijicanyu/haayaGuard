@@ -48,6 +48,7 @@ namespace GuardClient_Win
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            Safe.key = secretKey.Text;
             CameraConn();
         }
 

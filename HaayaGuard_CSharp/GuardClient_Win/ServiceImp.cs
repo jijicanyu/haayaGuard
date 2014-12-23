@@ -50,6 +50,7 @@ namespace Haaya.GuardClient
          {
              IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(DefineTable.ServerHost), DefineTable.ServerPort);
              _heartSocket.Connect(ipe);
+             Safe.Security(_heartSocket);
              _sendThread.IsBackground = true;
              _heartThread.IsBackground = true;
              _heartThread.Start();

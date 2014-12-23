@@ -37,6 +37,8 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.videPlayer = new AForge.Controls.VideoSourcePlayer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.secretKey = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(378, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(381, 25);
             this.toolStrip1.TabIndex = 13;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -107,11 +109,29 @@
             this.videPlayer.Text = "videPlayer";
             this.videPlayer.VideoSource = null;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(316, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "密匙";
+            // 
+            // secretKey
+            // 
+            this.secretKey.Location = new System.Drawing.Point(297, 82);
+            this.secretKey.Name = "secretKey";
+            this.secretKey.Size = new System.Drawing.Size(72, 21);
+            this.secretKey.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 302);
+            this.ClientSize = new System.Drawing.Size(381, 302);
+            this.Controls.Add(this.secretKey);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.videoSourcePlayer1);
             this.Controls.Add(this.videoSourcePlayer2);
             this.Controls.Add(this.toolStrip1);
@@ -136,6 +156,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private AForge.Controls.VideoSourcePlayer videPlayer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox secretKey;
     }
 }
 
