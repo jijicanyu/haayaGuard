@@ -1,0 +1,19 @@
+/*
+ * DefineTable.h
+ *
+ *  Created on: Dec 24, 2014
+ *      Author: wind
+ */
+
+#ifndef DEFINETABLE_H_
+#define DEFINETABLE_H_
+
+class DefineTable {
+public:
+	DefineTable();
+	virtual ~DefineTable();
+public:
+	static const String SendImage;
+};
+
+#endif /* DEFINETABLE_H_ */
