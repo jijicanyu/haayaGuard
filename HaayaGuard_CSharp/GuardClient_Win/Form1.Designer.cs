@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.videoSourcePlayer1 = new AForge.Controls.VideoSourcePlayer();
             this.videoSourcePlayer2 = new AForge.Controls.VideoSourcePlayer();
@@ -40,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.secretKey = new System.Windows.Forms.TextBox();
             this.richState = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,6 +136,12 @@
             this.richState.TabIndex = 16;
             this.richState.Text = "";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -169,6 +177,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox secretKey;
         private System.Windows.Forms.RichTextBox richState;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

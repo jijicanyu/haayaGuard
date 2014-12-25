@@ -10,6 +10,6 @@ namespace Haaya.GuardClient
     {
        public static readonly string ServerHost = ConfigurationManager.AppSettings["ServerHost"];
        public static readonly int ServerPort =int.Parse(ConfigurationManager.AppSettings["ServerPort"]);
-       public static readonly int DataPort = int.Parse(ConfigurationManager.AppSettings["DataPort"]);
+      
     }
 }

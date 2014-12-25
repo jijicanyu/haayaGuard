@@ -1,6 +1,7 @@
 ﻿using AForge.Video.DirectShow;
 using Haaya.GuardClient;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace GuardClient_Win
 {
     public partial class Form1 : Form
     {
+        private ConcurrentQueue<String> _statusQueue = new ConcurrentQueue<String>();
         private FilterInfoCollection videoDevices;
         public Form1()
         {
@@ -21,7 +23,7 @@ namespace GuardClient_Win
         }
         public void Log(string content)
         {
-            richState.AppendText(content + "\n");
+            _statusQueue.Enqueue(content);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -55,6 +57,7 @@ namespace GuardClient_Win
             Safe.key = secretKey.Text;
             ServiceImp.Instance.Init();
             CameraConn();
+            
         }
 
         private void CameraConn()
@@ -75,6 +78,17 @@ namespace GuardClient_Win
         {
             toolStripButton2_Click(null, null);
             ServiceImp.Instance.Clear();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int count = _statusQueue.Count;
+            string content = string.Empty;
+            for (var i = 0; i < count; i++)
+            {
+                _statusQueue.TryDequeue(out content);
+                richState.AppendText(content + "\n");
+            }
         }
     }
 }
