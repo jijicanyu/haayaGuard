@@ -29,11 +29,12 @@ namespace Haaya.GuardClient
         Socket _heartSocket;
         private MemoryStream _ms;
         private System.Threading.Timer _heartTimer;
-        private byte[] _heartData = { 1, 0, 1 };
+        private byte[] _heartData;
         private byte[] _cmdData;
         public static Form1 win;
          private ServiceImp()
         {
+            _heartData = System.Text.Encoding.ASCII.GetBytes(CmdTable.Living);
             _cmdData = new byte[512];
             _imgCount = 0;
             _isSendVedio = false;
@@ -62,14 +63,23 @@ namespace Haaya.GuardClient
              win.Log("启动心跳线程");
              _heartThread.Start();
              win.Log("启动心跳计时器");
-             _heartTimer = new Timer(ServiceImp.Heart, null, 10 * 1000, 60 * 1000);
+             _heartTimer = new Timer(ServiceImp.Heart, null, 10 * 1000, 6 * 1000);
          }
         
          private static void Heart(object state)
          {
              if (ServiceImp._instance._heartSocket.Available < 1)
-             ServiceImp._instance._heartSocket.Send(ServiceImp._instance._heartData);
-             win.Log("心跳");
+             {
+                 try
+                 {
+                     ServiceImp._instance._heartSocket.Send(ServiceImp._instance._heartData);
+                 }
+                 catch (Exception ex)
+                 {
+                     win.Log("服务器中断连接");
+                 }
+                 win.Log("心跳");
+             }
          }
          private static void HeartListen()
          {

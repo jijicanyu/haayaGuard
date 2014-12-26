@@ -10,7 +10,7 @@ namespace Haaya.GuardClient
   internal class Safe
     {
       public static string key=String.Empty;
-        internal static void Security(Socket socket)
+        internal static bool Security(Socket socket)
         {
             socket.Send(System.Text.Encoding.ASCII.GetBytes(key));
             bool isLoop = true;
@@ -27,9 +27,10 @@ namespace Haaya.GuardClient
                 }
             socket.Receive(cmd);
             string strCmd = System.Text.Encoding.ASCII.GetString(cmd);
-                if(strCmd==CmdTable.Passed)
-                    isLoop = false;
+            if (strCmd == CmdTable.Passed)
+                return true;
             }
+            return false;
         }
     }
 }

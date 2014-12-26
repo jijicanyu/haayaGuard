@@ -11,7 +11,7 @@ namespace Haaya.GuardClient
        public static readonly string OtherClientConnected = "co";
        public static readonly string OpenHole = "c";
        public static readonly string Passed = "p";
-
+       public static readonly string Living = "lo";
       
     }
 }
