@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyRTC聊天室Demo</title>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #videos {
+            position: absolute;
+            left: 30%;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            overflow: auto;
+        }
+
+            #videos video {
+                display: inline-block;
+                width: 32%;
+            }
+
+
+        
+
+          
+        
+    </style>
+</head>
+<body>
+    
+    
+    <div id="videos">
+        <video id="me" autoplay></video>
+    </div>
+    <div>
+        <input type="text" id="loginName" name="loginName" value="" />
+        <input type="password" id="pwd" name="pwd" value="" />
+        <input type="button" id="loginBtn" value="登陆" />
+    </div>
+    <script src="lib/webrtc-client.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>

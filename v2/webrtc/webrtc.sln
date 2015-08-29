@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webrtc", "webrtc\webrtc.csproj", "{2526433C-861A-405C-8301-1180023450D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "v", "v\v.csproj", "{27B18638-7722-4A02-8C3D-C836C164C75F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2526433C-861A-405C-8301-1180023450D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2526433C-861A-405C-8301-1180023450D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2526433C-861A-405C-8301-1180023450D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B18638-7722-4A02-8C3D-C836C164C75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B18638-7722-4A02-8C3D-C836C164C75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B18638-7722-4A02-8C3D-C836C164C75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B18638-7722-4A02-8C3D-C836C164C75F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
