@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var SkyRTC = require('skyrtc').listen(server);
+var SkyRTC = require('./lib/webrtc.js').listen(server);
 var path = require("path");
 
 var port = process.env.PORT || 3000;
@@ -10,7 +10,7 @@ server.listen(port);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 SkyRTC.rtc.on('new_connect', function (socket) {

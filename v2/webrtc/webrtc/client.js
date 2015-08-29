@@ -1,8 +1,13 @@
 ﻿/// <reference path="lib/jquery-1.8.2.min.js" />
 var userVaildateProvider = {
     session: "",
-    url:"",
-    login: function (loginName, pwd) {
+    loginBtn: $("#loginBtn"),
+    url: "http://u.xieqj.cn/UserVaildate.asmx?op=ThirdLogin",
+    init: function () {
+        this.loginBtn.on("click", this.login);
+    },
+    login: function () {
+        var loginName = $("#loginName").val(), pwd = $("#pwd").val();
         $.ajax({
             url: userVaildateProvider.url,
             data: JSON.stringify({ loginName: loginName, pwd: pwd }),
@@ -76,3 +81,4 @@ rtc.on('data_channel_message', function (channel, socketId, message) {
     p.innerText = socketId + ": " + message;
     msgs.appendChild(p);
 });
+userVaildateProvider.init();

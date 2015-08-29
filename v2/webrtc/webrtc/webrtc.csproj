@@ -65,6 +65,7 @@
     <Content Include="lib\webrtc.js" />
     <Content Include="server.js" />
     <Content Include="Web.config" />
+    <None Include="Properties\PublishProfiles\webrtcNode.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

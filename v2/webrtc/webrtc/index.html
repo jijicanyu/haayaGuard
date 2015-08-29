@@ -80,14 +80,17 @@
     </style>
 </head>
 <body>
-    <div id="chat">
-        
-    </div>
+    
+    
     <div id="videos">
         <video id="me" autoplay></video>
     </div>
-      
-    <script src="/lib/webrtc-client.js"></script>
-    <script src="/client.js"></script>
+    <div>
+        <input type="text" id="loginName" name="loginName" value="" />
+        <input type="password" id="pwd" name="pwd" value="" />
+        <input type="button" id="loginBtn" value="登陆" />
+    </div>
+    <script src="lib/webrtc-client.js"></script>
+    <script src="client.js"></script>
 </body>
 </html>
