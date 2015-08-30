@@ -20,9 +20,9 @@ var userVaildateProvider = {
                 var r = data;
                 if (r.ActionResult) {
                     userVaildateProvider.session = r.Data;
-                    alert(userVaildateProvider.session);
+                   // alert(userVaildateProvider.session);
                     //连接WebSocket服务器
-                    rtc.connect("ws:192.168.100.4:3000", "1");
+                    rtc.connect("ws:http://192.168.100.4:3000", "");
                 }
                
             },

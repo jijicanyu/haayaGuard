@@ -10,60 +10,60 @@ var errorCb = function (rtc) {
         }
     };
 };
-function userVaildate(session) {
-    var vaildateReuslt = false;
-    soap.createClient("http://u.xieqj.cn/UserVaildate.asmx?op=SessionVaildate", function (err, client) {
-        client.SessionVaildate({ session: session }, function (err, result) {
-            console.log(result);
-            vaildateReuslt = result;
-        });
-    });
-    return vaildateReuslt;
-}
 function SkyRTC() {
     this.sockets = [];
     this.rooms = {};
     this.on('__join', function (data, socket) {
-        console.log(this.sockets.length);
-        console.log('__join');
-        var ids = [],
-			i, m,
-			room = data.room || "__default",
-			curSocket,
-			curRoom;
-        console.log(data.session+'will vaildate');
-        if (!userVaildate(data.session)) {
-            console.log(data.session + 'vaildate false');
-            return;
-        }
-        curRoom = this.rooms[room] = this.rooms[room] || [];
+        var jointhat = this;
+        console.log(data.session + 'will vaildate');
+        soap.createClient("http://u.xieqj.cn/UserVaildate.asmx?WSDL", function (err, client) {
+            client.SessionVaildate({ session: session }, function (err, result) {
+                console.log("userVaildatelog:" + result);
+                if (result.SessionVaildate) {
+                    joinAction(data, socket);
+                } else {
+                    console.log(data.session + 'vaildate false');
+                }
+            });
+        });
+        function joinAction(data, socket) {
+            console.log(jointhat.sockets.length);
+            console.log('__join');
+            var ids = [],
+                i, m,
+                room = data.room || "__default",
+                curSocket,
+                curRoom;    
+            curRoom = jointhat.rooms[room] = jointhat.rooms[room] || [];
 
-        for (i = 0, m = curRoom.length; i < m; i++) {
-            curSocket = curRoom[i];
-            if (curSocket.id === socket.id) {
-                continue;
+            for (i = 0, m = curRoom.length; i < m; i++) {
+                curSocket = curRoom[i];
+                if (curSocket.id === socket.id) {
+                    continue;
+                }
+                ids.push(curSocket.id);
+                curSocket.send(JSON.stringify({
+                    "eventName": "_new_peer",
+                    "data": {
+                        "socketId": socket.id
+                    }
+                }), errorCb);
             }
-            ids.push(curSocket.id);
-            curSocket.send(JSON.stringify({
-                "eventName": "_new_peer",
+
+            curRoom.push(socket);
+            socket.room = room;
+
+            socket.send(JSON.stringify({
+                "eventName": "_peers",
                 "data": {
-                    "socketId": socket.id
+                    "connections": ids,
+                    "you": socket.id
                 }
             }), errorCb);
-        }
 
-        curRoom.push(socket);
-        socket.room = room;
-
-        socket.send(JSON.stringify({
-            "eventName": "_peers",
-            "data": {
-                "connections": ids,
-                "you": socket.id
-            }
-        }), errorCb);
-
-        this.emit('new_peer', socket, room);
+            jointhat.emit('new_peer', socket, room);
+        };
+       
     });
 
     this.on('__ice_candidate', function (data, socket) {
