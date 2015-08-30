@@ -2,7 +2,7 @@
 var userVaildateProvider = {
     session: "",
     loginBtn: $("#loginBtn"),
-    url: "http://u.xieqj.cn/UserVaildate.asmx?op=ThirdLogin",
+    url: "http://u.xieqj.cn/UserVaildate.asmx/CrossLogin",
     init: function () {
         this.loginBtn.on("click", this.login);
     },
@@ -10,17 +10,19 @@ var userVaildateProvider = {
         var loginName = $("#loginName").val(), pwd = $("#pwd").val();
         $.ajax({
             url: userVaildateProvider.url,
-            data: JSON.stringify({ loginName: loginName, pwd: pwd }),
+            data: { loginName: loginName, pwd: pwd },
             type: 'post',
             cache: false,
             contentType: "application/json; charset=utf-8",
-            dataType: 'json',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
             success: function (data) {
-                var r = data.d;
+                var r = data;
                 if (r.ActionResult) {
                     userVaildateProvider.session = r.Data;
+                    alert(userVaildateProvider.session);
                     //连接WebSocket服务器
-                    rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], window.location.hash.slice(1));
+                    rtc.connect("ws:192.168.100.4:3000", "1");
                 }
                
             },
@@ -35,11 +37,8 @@ var userVaildateProvider = {
         });
     }
 };
+
 var videos = document.getElementById("videos");
-var sendBtn = document.getElementById("sendBtn");
-var msgs = document.getElementById("msgs");
-var sendFileBtn = document.getElementById("sendFileBtn");
-var files = document.getElementById("files");
 var rtc = SkyRTC();
 //成功创建WebSocket连接
 rtc.on("connected", function (socket) {
