@@ -15,14 +15,13 @@ function SkyRTC() {
     this.rooms = {};
     this.on('__join', function (data, socket) {
         var jointhat = this;
-        console.log(data.session + 'will vaildate');
+        console.log(data.session + ':will vaildate');
         soap.createClient("http://u.xieqj.cn/UserVaildate.asmx?WSDL", function (err, client) {
-            client.SessionVaildate({ session: data.session }, function (err, result) {
-                console.log("userVaildatelog:" + result);
-                if (result.SessionVaildate) {
+            client.SessionVaildate({ session: data.session }, function (err, result) {               
+                if (result.SessionVaildateResult) {
                     joinAction(data, socket);
                 } else {
-                    console.log(data.session + 'vaildate false');
+                    console.log(data.session + ':vaildate false');
                 }
             });
         });
