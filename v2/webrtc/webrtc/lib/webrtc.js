@@ -17,7 +17,7 @@ function SkyRTC() {
         var jointhat = this;
         console.log(data.session + 'will vaildate');
         soap.createClient("http://u.xieqj.cn/UserVaildate.asmx?WSDL", function (err, client) {
-            client.SessionVaildate({ session: session }, function (err, result) {
+            client.SessionVaildate({ session: data.session }, function (err, result) {
                 console.log("userVaildatelog:" + result);
                 if (result.SessionVaildate) {
                     joinAction(data, socket);
