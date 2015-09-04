@@ -5,7 +5,7 @@ var SkyRTC = require('./lib/webrtc.js').listen(server);
 var path = require("path");
 
 var port = process.env.PORT || 3000;
-server.listen(port);
+server.listen(port,'v.xieqj.cn');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
