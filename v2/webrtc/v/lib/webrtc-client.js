@@ -94,7 +94,7 @@ var SkyRTC = function (usr,pwd) {
                 "eventName": "__join",
                 "data": {
                     "room": room,
-                    "session": userVaildateProvider.session
+                    "session": pageObject.session
                 }
             }));
             that.emit("socket_opened", socket);
