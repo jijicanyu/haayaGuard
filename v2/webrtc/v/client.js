@@ -63,7 +63,7 @@ var pageObject = {
                     pageObject.session = r.Data;
                    // alert(pageObject.session);
                     //连接WebSocket服务器
-                    rtc.connect("ws:http://v.xieqj.cn:3000", "");
+                    rtc.connect("ws:v.xieqj.cn:3000", "");
                 }
                
             },
