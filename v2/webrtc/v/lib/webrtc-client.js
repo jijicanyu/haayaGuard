@@ -1,5 +1,5 @@
 ﻿
-var SkyRTC = function () {
+var SkyRTC = function (usr,pwd) {
     var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection);
     var URL = (window.URL || window.webkitURL || window.msURL || window.oURL);
     var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -8,7 +8,13 @@ var SkyRTC = function () {
     var moz = !!navigator.mozGetUserMedia;
     var iceServer = {
         "iceServers": [{
-            "url": "stun:stun.ideasip.com"
+            "url": "stun:stun.xieqj.cn:3000",
+            "username": usr,
+            "credential": pwd
+        }, {
+            "url": "stun:stun.xieqj.cn:3000",
+            "username": usr,
+            "credential": pwd
         }]
     };
     var packetSize = 1000;
@@ -223,9 +229,9 @@ var SkyRTC = function () {
             element.mozSrcObject = stream;
             element.play();
         } else {
-            element.src = webkitURL.createObjectURL(stream);
+            element.src = URL.createObjectURL(stream);
         }
-        element.src = webkitURL.createObjectURL(stream);
+        element.src = URL.createObjectURL(stream);
     };
 
 
