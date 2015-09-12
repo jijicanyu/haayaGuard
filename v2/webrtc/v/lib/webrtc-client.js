@@ -12,7 +12,7 @@ var SkyRTC = function (usr,pwd) {
             "username": usr,
             "credential": pwd
         }, {
-            "url": "stun:stun.xieqj.cn:3000",
+            "url": "turn:turn.xieqj.cn:3000",
             "username": usr,
             "credential": pwd
         }]

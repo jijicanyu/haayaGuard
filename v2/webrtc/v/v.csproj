@@ -62,7 +62,6 @@
     <Content Include="index.html" />
     <Content Include="lib\jquery-1.8.2.min.js" />
     <Content Include="lib\webrtc-client.js" />
-    <Content Include="lib\webrtc.js" />
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\v.pubxml" />
   </ItemGroup>
